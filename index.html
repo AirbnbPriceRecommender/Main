@@ -1,0 +1,157 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Airbnb Price Recommender</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,700,500,900' rel='stylesheet' type='text/css'>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		<script src="js/skel.min.js"></script>
+		<script src="js/skel-panels.min.js"></script>
+		<script src="js/init.js"></script>
+		<noscript>
+			<link rel="stylesheet" href="css/skel-noscript.css" />
+			<link rel="stylesheet" href="css/style.css" />
+			<link rel="stylesheet" href="css/style-desktop.css" />
+		</noscript>
+	</head>
+	<body class="homepage">
+		
+	<!-- Header -->
+		<div id="header">
+			<div id="nav-wrapper"> 
+				<a href="https://github.com/AirbnbPriceRecommender"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+				<!-- Nav -->
+				<nav id="nav">
+					<ul>
+						<li class="active"><a href="index.html">Home</a></li>
+						<li><a href="data.html">Data</a></li>
+						<li><a href="cleaning.html">Cleaning</a></li>
+						<li><a href="regression.html">Regression</a></li>
+						<li><a href="results.html">Results</a></li>
+						<li><a href="visualitzation.html">Visualitzation</a></li>
+					</ul>
+				</nav>
+			</div>
+			<div class="container"> 
+				
+				<!-- Logo -->
+				<div id="logo">
+					<h1><a href="#">Airbnb Price Recommender</a></h1>
+					<span class="tag">Applying XGBoost Modeling</span>
+				</div>
+			</div>
+		</div>
+
+	<!-- Featured -->
+		<div id="featured">
+			<div id="content" class="container" style="text-align:left;">
+				
+				<p>There is a new world movement called collaborative economy or sharing economy, enabling social technologies defined as web-based platforms allowing
+					 consumers to engage in monetized exchanges through peer-to-peer-based for services or temporary access to goods.</p>
+					 
+				<p> One of the leading examples of this new collaborative economy is Airbnb, an online leading platform that enables people to list, 
+					find and rent their vacation homes for a processing fee. Nowadays this online marketplace has over 1.5 million listings in 34 thousand 
+					cities and 191 countries and it’s a newcomer big competitor in the lodging industry.</p>
+				
+				<p>Just in Barcelona around 15 thousand people are listing their flats or un-occupy rooms at their flats but one of the toughest decisions when people
+					 upload their flats is ¿how much do I should receive for the renting of my flat? ¿Which should be the best price for a night at my apartment?</p>
+
+				<p>This isn’t an easy question, it depends on a lot of factors and it’s the main stressful inquiry the user should answer to list their apartment to 
+					the point that a lot of users that just don’t know which price to charge just abandoned the uploading process and the application.</p> 
+
+				<p>In order to reduce the user stress and promote more accurate and fair lodging prices we design and develop a new Airbnb price recommender based on the flat characteristics.</p>
+
+				<p>In following sections you could see and understand how we develop this application, its technical characteristics and its importance reducing user stress 
+					and recommending accurate prices for their apartments. </p>
+
+				<p>It’s also important to point out that the same process followed here could be applied to a lot other applications where the price plays a 
+					stressful role for the users as for example: ebay, drivy, blablacar, wallapop, olx, between others. 
+					</p>
+				<!--<hr />-->
+				<!--<div class="row">
+					<section class="4u">
+						<span class="pennant"><span class="fa fa-briefcase"></span></span>
+						<h3>Maecenas luctus lectus</h3>
+						<p>Curabitur sit amet nulla. Nam in massa. Sed vel tellus. Curabitur sem urna, consequat vel, suscipit in, mattis placerat, nulla. Sed ac leo.</p>
+						<a href="#" class="button button-style1">Read More</a>
+					</section>
+					<section class="4u">
+						<span class="pennant"><span class="fa fa-lock"></span></span>
+						<h3>Maecenas luctus lectus</h3>
+						<p>Donec ornare neque ac sem. Mauris aliquet. Aliquam sem leo, vulputate sed, convallis at, ultricies quis, justo. Donec magna.</p>
+						<a href="#" class="button button-style1">Read More</a>
+					</section>
+					<section class="4u">
+						<span class="pennant"><span class="fa fa-globe"></span></span>
+						<h3>Maecenas luctus lectus</h3>
+						<p>Curabitur sit amet nulla. Nam in massa. Sed vel tellus. Curabitur sem urna, consequat vel, suscipit in, mattis placerat, nulla. Sed ac leo.</p>
+						<a href="#" class="button button-style1">Read More</a>
+					</section>
+
+				</div>-->
+			</div>
+		</div>
+
+	<!-- Main -->
+		<div id="main">
+			<div id="content" class="container">
+				<header class="major"><h2>Meet the team behind</h2></header>
+					<div class="row">
+						<section class="3u nav" onclick="window.open('https://github.com/fmicand')">
+							<img src="https://avatars2.githubusercontent.com/u/14281347?v=3&s=400" height="92" width="92" alt="">
+							<h4>Florent Micand</h4>
+							<p>Physicist</p>
+						</section>
+						<section class="3u" onclick="window.open('https://github.com/michelabad')">
+							<img src="https://media.licdn.com/media/AAEAAQAAAAAAAAQzAAAAJDBlY2VlZTE3LWQzZjUtNDA4Yi1iYjc4LTlmYWJjNzBiMDZkMQ.jpg" height="92" width="92" alt="">
+							<h4>Michela Badioli </h4>
+							<p>Physicist</p>
+						</section>
+						<section class="3u" onclick="window.open('https://github.com/cviquez')">
+							<img src="https://media.licdn.com/media/p/7/000/221/098/0e08200.jpg" height="92" width="92" alt="">
+							<h4>Carlos Viquez</h4>
+							<p>Lawyer</p>
+						</section>
+						<section class="3u" onclick="window.open('https://github.com/hiroCat')">
+							<img src="https://avatars1.githubusercontent.com/u/5578838?v=3&s=400" height="92" width="92" alt="">
+							<h4>Miquel Puigdomenech</h4>
+							<p>Computer Engineer</p>
+						</section>
+					</div>
+			</div>
+		</div>
+
+	<!-- Tweet -->
+		<div id="tweet">
+			<div class="container">
+				<section>
+					<blockquote></blockquote>
+				</section>
+			</div>
+		</div>
+
+	<!-- Footer -->
+		<div id="footer">
+			<div class="container">
+				<section>
+					<header>
+						<h2>Get in touch</h2>
+					</header>
+					<ul class="contact">
+						<li><a href="https://github.com/AirbnbPriceRecommender" class="fa fa-github"><span>GitHub</span></a></li>
+					</ul>
+				</section>
+			</div>
+		</div>
+
+	<!-- Copyright -->
+		<div id="copyright">
+			<div class="container">
+				Design: <a href="http://templated.co">TEMPLATED</a>
+			</div>
+		</div>
+
+	</body>
+</html>
