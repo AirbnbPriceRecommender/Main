@@ -1,0 +1,253 @@
+<!DOCTYPE HTML>
+<!--
+	Linear by TEMPLATED
+    templated.co @templatedco
+    Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		<title>Linear by TEMPLATED</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,700,500,900' rel='stylesheet' type='text/css'>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		<script src="js/skel.min.js"></script>
+		<script src="js/skel-panels.min.js"></script>
+		<script src="js/init.js"></script>
+		<noscript>
+			<link rel="stylesheet" href="css/skel-noscript.css" />
+			<link rel="stylesheet" href="css/style.css" />
+			<link rel="stylesheet" href="css/style-desktop.css" />
+		</noscript>
+	</head>
+	<body>
+
+	<!-- Header -->
+		<!-- Header -->
+		<div id="header">
+			<div id="nav-wrapper"> 
+                <a href="https://github.com/AirbnbPriceRecommender"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+				<!-- Nav -->
+				<nav id="nav">
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li class="active"><a href="data.html">Data</a></li>
+						<li><a href="cleaning.html">Cleaning</a></li>
+						<li><a href="regression.html">Regression</a></li>
+						<li><a href="results.html">Results</a></li>
+						<li><a href="visualitzation.html">Visualitzation</a></li>
+					</ul>
+				</nav>
+			</div>
+			<div class="container"> 
+				
+				<!-- Logo -->
+				<div id="logo">
+					<h1><a href="#">Airbnb Price Recommender</a></h1>
+					<span class="tag">Applying XGBoost Modeling</span>
+				</div>
+			</div>
+		</div>
+
+	<!-- Header --> 
+
+	<!-- Main -->
+		<div id="main">
+			<div id="content" class="container">
+				<section>
+					<header>
+						<h2>Data</h2>
+						<span class="byline">Data used to make this project</span>
+					</header>
+					<p>The data used in this project comes from Inside Airbnb: <a href="http://insideairbnb.com/get-the-data.html">http://insideairbnb.com</a>
+					</p>
+                    <p>
+                    Inside Airbnb is an independent, non-commercial set of tools and data that allows us to explore how Airbnb is really being used in cities around the world. By analysing publicly available information about a city's Airbnb's listings, Inside Airbnb provides filters and key metrics so we can see how Airbnb is being used to compete with the residential housing market.
+                    </p>
+                    <a class="image full"><img src="images/Data_Graphics1.png" alt=""></a>
+				</section>
+			</div>
+		</div>
+        <div id="featured">
+			<div class="container">
+                    <div class="row">
+                        <section class="4u"><a href="http://data.insideairbnb.com/spain/catalonia/barcelona/2016-01-03/data/listings.csv.gz">
+                            <span class="pennant"><span class="fa  fa-calendar"></span></span>
+                            <h3>Date 03 January, 2016</h3>
+                            </a>
+                        </section>
+                        <section class="4u"><a href="https://creativecommons.org/publicdomain/zero/1.0/">
+                            <span class="pennant"><i class="fa fa-database"></i></span>
+                            <h3>The data is available under a Creative Commons license</h3>
+                            </a>
+                        </section>
+                        <section class="4u"><a href="https://en.wikipedia.org/wiki/Comma-separated_values">
+                            <span class="pennant"><span class="fa fa-file"></span></span>
+                            <h3>Format CSV</h3>
+                            </a>
+                        </section>
+                    </div>
+				</div>
+			</div>
+        <div id="main">
+            <div id="content" class="container">
+				<section>
+                    <header>
+                        <span class="byline">Fields used</span>
+                    </header>
+                      <div class="container">
+                        <div class="row">
+                            <section class="">
+                                <ul class="default">
+                                    <li>id</li>
+                                    <li>listing_url</li>
+                                    <li>scrape_id</li>
+                                    <li>last_scraped</li>
+                                    <li>name</li>
+                                    <li>summary</li>
+                                    <li>space</li>
+                                    <li>description</li>
+                                    <li>experiences_offered</li>
+                                    <li>neighborhood_overview</li>
+                                    <li>notes</li>
+                                    <li>transit</li>
+                                    <li>thumbnail_url</li>
+                                    <li>medium_url</li>
+                                    <li>picture_url</li>
+                                    <li>xl_picture_url</li>
+                                    <li>host_id</li>
+                                    <li>host_url</li>
+                                    <li>host_name</li>
+                                </ul>
+                            </section>
+                            <section class="">
+                                <ul class="default">
+                                <li>host_since</li>
+                                <li>host_location</li>
+                                <li>host_about</li>
+                                <li>host_response_time</li>
+                                <li>host_response_rate</li>
+                                <li>host_acceptance_rate</li>
+                                <li>host_is_superhost</li>
+                                <li>host_thumbnail_url</li>
+                                <li>host_picture_url</li>
+                                <li>host_neighbourhood</li>
+                                <li>host_listings_count</li>
+                                <li>host_total_listings_count</li>
+                                <li>host_verifications</li>
+                                <li>host_has_profile_pic</li>
+                                <li>host_identity_verified</li>
+                                <li>street</li>
+                                <li>neighbourhood</li>
+                                <li>neighbourhood_cleansed</li>
+                                <li>neighbourhood_group_cleansed</li>
+                                </ul>
+                            </section>
+                            <section class="">
+                                <ul class="default">
+                                <li>city</li>
+                                <li>state</li>
+                                <li>zipcode</li>
+                                <li>market</li>
+                                <li>smart_location</li>
+                                <li>country_code</li>
+                                <li>country</li>
+                                <li>latitude</li>
+                                <li>longitude</li>
+                                <li>is_location_exact</li>
+                                <li>property_type</li>
+                                <li>room_type</li>
+                                <li>accommodates</li>
+                                <li>bathrooms</li>
+                                <li>bedrooms</li>
+                                <li>beds</li>
+                                <li>bed_type</li>
+                                <li>amenities</li>
+                                <li>square_feet</li>
+                                </ul>
+                            </section>
+                            <section class="">
+                                <ul class="default">
+                                <li>price</li>
+                                <li>weekly_price</li>
+                                <li>monthly_price</li>
+                                <li>security_deposit</li>
+                                <li>cleaning_fee</li>
+                                <li>guests_included</li>
+                                <li>extra_people</li>
+                                <li>minimum_nights</li>
+                                <li>maximum_nights</li>
+                                <li>calendar_updated</li>
+                                <li>has_availability</li>
+                                <li>availability_30</li>
+                                <li>availability_60</li>
+                                <li>availability_90</li>
+                                <li>availability_365</li>
+                                <li>calendar_last_scraped</li>
+                                <li>number_of_reviews</li>
+                                <li>first_review</li>
+                                <li>last_review</li>
+                                </ul>
+                            </section>
+                            <section class="">
+                                <ul class="default">
+                                <li>review_scores_rating</li>
+                                <li>review_scores_accuracy</li>
+                                <li>review_scores_cleanliness</li>
+                                <li>review_scores_checkin</li>
+                                <li>review_scores_communication</li>
+                                <li>review_scores_location</li>
+                                <li>review_scores_value</li>
+                                <li>requires_license</li>
+                                <li>license</li>
+                                <li>jurisdiction_names</li>
+                                <li>instant_bookable</li>
+                                <li>cancellation_policy</li>
+                                <li>require_guest_profile_picture</li>
+                                <li>require_guest_phone_verification</li>
+                                <li>calculated_host_listings_count</li>
+                                <li>reviews_per_month</li>
+                                </ul>
+                            </section>
+                            </div>
+                        </div>
+			        </span>
+				</section>
+			</div>
+        </div>
+	<!-- /Main -->
+
+	<!-- Tweet -->
+		<div id="tweet">
+			<div class="container">
+				<section>
+					<blockquote></blockquote>
+				</section>
+			</div>
+		</div>
+	<!-- /Tweet -->
+
+	<!-- Footer -->
+		<div id="footer">
+			<div class="container">
+				<section>
+					<header>
+						<h2>Get in touch</h2>
+					</header>
+					<ul class="contact">
+						<li><a href="https://github.com/AirbnbPriceRecommender" class="fa fa-github"><span>GitHub</span></a></li>
+					</ul>
+				</section>
+			</div>
+		</div>
+
+	<!-- Copyright -->
+		<div id="copyright">
+			<div class="container">
+				Design: <a href="http://templated.co">TEMPLATED</a>
+			</div>
+		</div>
+
+	</body>
+</html>
