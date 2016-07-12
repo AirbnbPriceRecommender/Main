@@ -1,4 +1,4 @@
-# Main code
+# Airbnb Price Recommender
 
 You will find in this repository the code and raw data needed to create an Airbnb Price Recommender for users who want to rent their flat in the platform, based on an XGBoost regression model.
 
