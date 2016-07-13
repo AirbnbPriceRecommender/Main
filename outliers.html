@@ -1,0 +1,183 @@
+<!DOCTYPE HTML>
+<!--
+	Linear by TEMPLATED
+    templated.co @templatedco
+    Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		<title>Airbnb Price Recommende</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,700,500,900' rel='stylesheet' type='text/css'>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		<script src="js/skel.min.js"></script>
+		<script src="js/skel-panels.min.js"></script>
+		<script src="js/init.js"></script>
+		<script src="js/shCore.js" type="text/javascript"></script>
+		<script src="js/shBrushPython.js" type="text/javascript"></script>
+		
+		<noscript>
+			<link rel="stylesheet" href="css/skel-noscript.css" />
+			<link rel="stylesheet" href="css/style.css" />
+			<link rel="stylesheet" href="css/style-desktop.css" />
+			<link href="css/shCore.css" rel="stylesheet" type="text/css" />
+			<link href="css/shThemeDefault.css" rel="stylesheet" type="text/css" />
+		</noscript>
+		<script type="text/javascript">SyntaxHighlighter.all() </script>
+	</head>
+	<body>
+
+	<!-- Header -->
+		<!-- Header -->
+		<div id="header">
+			<div id="nav-wrapper"> 
+				<a href="https://github.com/AirbnbPriceRecommender"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+				<!-- Nav -->
+				<nav id="nav">
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li><a href="data.html">Data</a></li>
+						<li><a href="cleaning.html">Cleaning</a></li>
+                        <li class="active"><a href="#">Outliers</a></li>
+						<li><a href="regression.html">Regression</a></li>
+						<li><a href="results.html">Results</a></li>
+						<li><a href="visualitzation.html">Visualitzation</a></li>
+					</ul>
+				</nav>
+			</div>
+			<div class="container"> 
+				
+				<!-- Logo -->
+				<div id="logo">
+					<h1><a href="index.html">Airbnb Price Recommender</a></h1>
+					<span class="tag">Applying XGBoost Model</span>
+				</div>
+			</div>
+		</div>
+
+	<!-- Header --> 
+
+	<!-- Main -->
+		<div id="main">
+			<div id="content" class="container">
+				<section>
+					<header>
+						<h2>Outliers</h2>
+					</header>
+					<p>The treatment of outliers has been mainly devoted to finding and removing outliers based on their geo-localization and on their price.</p>
+                    <p>In the following sections we will see how we removed outliers based on their location, which criteria we decided to apply to the outlier treatment, and how we removed the outliers based on their price.</p>
+					<header>
+						<span class="byline">Geographic Outliers</span>
+					</header>
+                    <h2>Motivation for skimming geographic outliers</h2>
+					<p>We assume that data entries that are very far away from the rest of the dataset will have characteristics and prices that do not reflect the market of the city we are considering, so we want to filter very isolated points, as the ones that are one the outskirts of the map.</p>
+                    <center><img src="images/Outliers/img1.png" width="500" height="500" /></center>
+                    <h2>Results</h2>
+                    <p>We proceed to find and remove the outliers based on the median distance of each entry to its 25 first neighbors.  If such distance is larger than a control distance dc the data point is considered as an outlier. The control distance dc  depends on the distance distribution of the particular city considered, and on some threshold parameters that we will discuss more in detail in the next sections. For the Barcelona dataset dc  was 355 m, the median distance to the neighbors 72 m, and the error on the median 35 m (MAD, median absolute deviation, explained in detail in the section CRITERIA TO DETECT OUTLIERS).</p>
+                    <p>In the following picture we plot the histograms (in log scale) of the distribution of the median distances of each entry to its 25 neighbors before and after the outlier removal treatment.</p>
+                    <center><img src="images/Outliers/img2.png" width="500" height="500"/></center>
+                    <p>In the map below, the points selected as outliers are plotted in blue, while the data points we keep are plotted in red.</p>
+                    <center><img src="images/Outliers/img3.png" width="500" height="500"/></center>
+                    <h2>Choice of the neighbor number</h2>
+                    <p>We consider the neighbor number a hyperparameter that can be tuned. We therefore choose the number of neighbors to consider in order to compute the median distance of each point to the others according to the best score of the final regressor. A neighbor number of 25 gave the best score for Barcelona, but of course this parameter should be tuned according to the specific geography when applying this method to another city.</p>
+                    <p>Below we show the maps of the outliers and “good data” obtained using the same procedure with neighbor number 5 and 100, respectively.</p>
+                    <img src="images/Outliers/img4.png" width="500" height="500"/>
+                    <img src="images/Outliers/img5.png" width="500" height="500"/>
+                    <p>We observe that choosing a neighbor number of 100.</p>
+                    <header>
+						<span class="byline">Criteria To Detect Outliers</span>
+					</header>
+                    <p>The way we chose to detect the outliers was to rely on the median and on the median absolute deviation, MAD, i.e. an error calculated on the median. Indeed, considering MAD and median is generally more robust than looking at mean and standard deviation when treating outliers (see Leys et al., 2013 and references therein). The MAD is defined as follows:</p>
+					<center><img width="200" height="36" src="images/Outliers/image012.png" v:shapes="_x0000_i1025"></center>
+                    <p>In general, we consider "good data" those data whose value x falls in the interval:</p>
+                    <center><img width="200" height="36" src="images/Outliers/image014.png" v:shapes="_x0000_i1025"></center>
+                    <p>where m is the median, and t  a threshold parameter.</p>
+                    <h2>Choice of the threshold</h2>
+                    <p>Setting the value t to 8 seemed a good choice for 3 reasons: 1) With this value both in the case of the geographic outliers and for the price outliers the distribution of data lost the "tails" but without losing a great amount of data. 2) This value gave good final score of the regressor. 3) If the distribution of distances was gaussian a threshold of 8 would result in cutting above 5 sigma (when appropriate multiplicative parameters are considered).</p>
+                    <h2>Special cases: asymmetric distributions</h2>
+                    <p>Both in the case of the geographic outliers that we saw in the previous section and in the case of the price outliers that we will see in the next section, the data distribution is asymmetric.</p>
+                    <p>We take this into account computing the MAD separately for the data above and below the median, thus obtaining a MADlow and a MADhigh value.</p>
+                    <p>For the geographic outliers we want to discard only the data with a very high distance to the others, so we consider good data those data whose value x is lower than a control distance dc,  that is defined as follows:</p>
+                    <center><img width="200" height="36" src="images/Outliers/image016.png" v:shapes="_x0000_i1025"></center>
+                    <p>For the price outliers instead, we want to make sure to discard both too high and too low values, so our criteria of selection of good data becomes:</p>
+                    <center><img width="200" height="36" src="images/Outliers/image018.png" v:shapes="_x0000_i1025"></center>
+                    <p>For more details, see also:</p>
+                    <p>Leys, C., et al., Detecting outliers: Do not use standard deviation around the mean, use absolute deviation around the median, Journal of Experimental Social Psychology, Volume 49, Issue 4, July 2013, pp. 764–766.</p>
+                    <p><a href="https://getpocket.com/a/read/821937616">https://getpocket.com/a/read/821937616</a></p>
+                    <p><a href="http://stackoverflow.com/questions/22354094/pythonic-way-of-detecting-outliers-in-one-dimensional-observation-data">http://stackoverflow.com/questions/22354094/pythonic-way-of-detecting-outliers-in-one-dimensional-observation-data</a></p>
+                    <header>
+						<span class="byline">Price Outliers</span>
+					</header>
+                    <p>The price value of the raw data has a very large range, as it is shown in the figure below. In this section we want to find and remove price outliers in order to be able to properly train our regressor.</p>
+                    <center><img src="images/Outliers/img6.png" width="500" height="500"/></center>
+                    <h2>Separating the three property type categories</h2>
+                    <p>In order to remove the outliers in the price feature, we should conisder the fact that the apartments are divided into three different property types: entire apartment, private room or shared room. This means that we should separate the three populations in order to apply any statistical analysis to find the outliers.</p>
+                    <center><img src="images/Outliers/img7.png" width="500" height="500"/></center>
+                    <p>The values of median and lower and higher MAD found for the three categories are shown in the following table.</p>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>PRICES</th>
+                            <th>Entire apt</th>
+                            <th>Private room</th>
+                            <th>Shared room</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>median</td>
+                            <td>125</td>
+                            <td>39</td>
+                            <td>22</td>
+                        </tr>
+                        <tr>
+                            <td>(MADlow, MADhigh)</td>
+                            <td>(30,45)</td>
+                            <td>(10,13)</td>
+                            <td>(3,13)</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <h2>Results</h2>
+                    <p>Applying the criteria described in the previous section we obtain the following distributions for the raw (plotted at the top) and cleaned data (plotted at the bottom).</p>
+                    <center><img src="images/Outliers/img8.png" width="500" height="500"/></center>
+                    <p>The number of outliers removed was 102 for the entire apartment category, 79 for the private room category and 4 for the shared room category.</p>
+                </section>
+			</div>
+		</div>
+	<!-- /Main -->
+
+	<!-- Tweet -->
+		<div id="tweet">
+			<div class="container">
+				<section>
+					<blockquote></blockquote>
+				</section>
+			</div>
+		</div>
+
+	<!-- Footer -->
+		<div id="footer">
+			<div class="container">
+				<section>
+					<header>
+						<h2>Get in touch</h2>
+					</header>
+					<ul class="contact">
+						<li><a href="https://github.com/AirbnbPriceRecommender" class="fa fa-github"><span>GitHub</span></a></li>
+					</ul>
+				</section>
+			</div>
+		</div>
+
+	<!-- Copyright -->
+		<div id="copyright">
+			<div class="container">
+				Design: <a href="http://templated.co">TEMPLATED</a>
+			</div>
+		</div>
+
+	</body>
+</html>
