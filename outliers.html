@@ -71,16 +71,16 @@
 					<header>
 						<span class="byline">Geographic Outliers</span>
 					</header>
-                    <h2>Motivation for skimming geographic outliers</h2>
+                    <h2><b>Motivation for skimming geographic outliers</b></h2>
 					<p>We assume that data entries that are very far away from the rest of the dataset will have characteristics and prices that do not reflect the market of the city we are considering, so we want to filter very isolated points, as the ones that are one the outskirts of the map.</p>
                     <center><img src="images/Outliers/img1.png" width="500" height="500" /></center>
-                    <h2>Results</h2>
+                    <h2><b>Results</b></h2>
                     <p>We proceed to find and remove the outliers based on the median distance of each entry to its 25 first neighbors.  If such distance is larger than a control distance dc the data point is considered as an outlier. The control distance dc  depends on the distance distribution of the particular city considered, and on some threshold parameters that we will discuss more in detail in the next sections. For the Barcelona dataset dc  was 355 m, the median distance to the neighbors 72 m, and the error on the median 35 m (MAD, median absolute deviation, explained in detail in the section CRITERIA TO DETECT OUTLIERS).</p>
                     <p>In the following picture we plot the histograms (in log scale) of the distribution of the median distances of each entry to its 25 neighbors before and after the outlier removal treatment.</p>
                     <center><img src="images/Outliers/img2.png" width="500" height="500"/></center>
                     <p>In the map below, the points selected as outliers are plotted in blue, while the data points we keep are plotted in red.</p>
                     <center><img src="images/Outliers/img3.png" width="500" height="500"/></center>
-                    <h2>Choice of the neighbor number</h2>
+                    <h2><b>Choice of the neighbor number</b></h2>
                     <p>We consider the neighbor number a hyperparameter that can be tuned. We therefore choose the number of neighbors to consider in order to compute the median distance of each point to the others according to the best score of the final regressor. A neighbor number of 25 gave the best score for Barcelona, but of course this parameter should be tuned according to the specific geography when applying this method to another city.</p>
                     <p>Below we show the maps of the outliers and “good data” obtained using the same procedure with neighbor number 5 and 100, respectively.</p>
                     <img src="images/Outliers/img4.png" width="500" height="500"/>
@@ -94,9 +94,9 @@
                     <p>In general, we consider "good data" those data whose value x falls in the interval:</p>
                     <center><img width="200" height="36" src="images/Outliers/image014.png" v:shapes="_x0000_i1025"></center>
                     <p>where m is the median, and t  a threshold parameter.</p>
-                    <h2>Choice of the threshold</h2>
+                    <h2><b>Choice of the threshold</b></h2>
                     <p>Setting the value t to 8 seemed a good choice for 3 reasons: 1) With this value both in the case of the geographic outliers and for the price outliers the distribution of data lost the "tails" but without losing a great amount of data. 2) This value gave good final score of the regressor. 3) If the distribution of distances was gaussian a threshold of 8 would result in cutting above 5 sigma (when appropriate multiplicative parameters are considered).</p>
-                    <h2>Special cases: asymmetric distributions</h2>
+                    <h2><b>Special cases: asymmetric distributions</b></h2>
                     <p>Both in the case of the geographic outliers that we saw in the previous section and in the case of the price outliers that we will see in the next section, the data distribution is asymmetric.</p>
                     <p>We take this into account computing the MAD separately for the data above and below the median, thus obtaining a MADlow and a MADhigh value.</p>
                     <p>For the geographic outliers we want to discard only the data with a very high distance to the others, so we consider good data those data whose value x is lower than a control distance dc,  that is defined as follows:</p>
@@ -112,7 +112,7 @@
 					</header>
                     <p>The price value of the raw data has a very large range, as it is shown in the figure below. In this section we want to find and remove price outliers in order to be able to properly train our regressor.</p>
                     <center><img src="images/Outliers/img6.png" width="500" height="500"/></center>
-                    <h2>Separating the three property type categories</h2>
+                    <h2><b>Separating the three property type categories</b></h2>
                     <p>In order to remove the outliers in the price feature, we should conisder the fact that the apartments are divided into three different property types: entire apartment, private room or shared room. This means that we should separate the three populations in order to apply any statistical analysis to find the outliers.</p>
                     <center><img src="images/Outliers/img7.png" width="500" height="500"/></center>
                     <p>The values of median and lower and higher MAD found for the three categories are shown in the following table.</p>
@@ -140,7 +140,7 @@
                         </tr>
                         </tbody>
                     </table>
-                    <h2>Results</h2>
+                    <h2><b>Results</b></h2>
                     <p>Applying the criteria described in the previous section we obtain the following distributions for the raw (plotted at the top) and cleaned data (plotted at the bottom).</p>
                     <center><img src="images/Outliers/img8.png" width="500" height="500"/></center>
                     <p>The number of outliers removed was 102 for the entire apartment category, 79 for the private room category and 4 for the shared room category.</p>
